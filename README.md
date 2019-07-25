@@ -4,7 +4,9 @@ Hifive1 + Hifive1-revB "bootloader" code to protect against bricking written in 
 
 ## *WARNING*
 
-The protector code is meant to prevent getting the hifive1 and hifive1-revB boards into an un-flashable state. This code is currently a work in progress. To recover the official Sifive1 bootloader for please see [this forum thread](https://forums.sifive.com/t/bootloader-restore/2429/18)
+The protector code is meant to prevent getting the hifive1 and hifive1-revB boards into an un-flashable state. This code is currently a work in progress.
+
+To recover the official Sifive1 bootloader see [this forum thread](https://forums.sifive.com/t/bootloader-restore/2429/18)
 
 Unlike the official bootloader, the protector does not attempt to intialize any peripheral of the hifive1 board. This is to minimize chances of problems stemming from state mangling on boot.
 
