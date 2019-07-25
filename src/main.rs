@@ -10,6 +10,11 @@ use hifive1::hal::DeviceResources;
 use hifive1::hal::delay::Sleep;
 use hifive1::{Led, pin};
 
+#[cfg(feature = "board-hifive1")]
+const FINAL_ADDRESS: usize = 0x20400000;
+#[cfg(feature = "board-hifive1-revb")]
+const FINAL_ADDRESS: usize = 0x20010000;
+
 #[entry]
 fn main() -> ! {
     let dr = DeviceResources::take().unwrap();
@@ -42,7 +47,6 @@ fn main() -> ! {
     flash_mode_pin.into_floating_input();
 
     // otherwise we jump to user code as usual
-    const FINAL_ADDRESS: usize = 0x20010000;
     let user_main: fn() -> ! = unsafe { mem::transmute(FINAL_ADDRESS) };
     user_main();
 }
