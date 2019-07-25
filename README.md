@@ -18,4 +18,4 @@ Future versions will probably mimic the original behavior via reset button state
 
 ### Hifive1-revB
 
-`cargo run --release --features board-hifive1`
+`cargo run --release --features board-hifive1-revb`
