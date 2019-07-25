@@ -1,0 +1,25 @@
+[package]
+name = "hifive1-protector"
+version = "0.0.1"
+authors = ["ales@katona.me"]
+edition = "2018"
+license = "GPLv3"
+readme = "README.md"
+
+[dependencies]
+hifive1 = "0.8.0"
+panic-halt = "0.2.0"
+riscv-rt = "0.6.0"
+
+[features]
+board-hifive1 = ["hifive1/board-hifive1"]
+board-hifive1-revb = ["hifive1/board-hifive1-revb"]
+board-lofive = []
+
+[package.metadata.docs.rs]
+features = ['board-hifive1-revb']
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
