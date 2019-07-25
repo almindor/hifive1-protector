@@ -8,7 +8,7 @@ use riscv_rt::entry;
 use hifive1::hal::prelude::*;
 use hifive1::hal::DeviceResources;
 use hifive1::hal::delay::Sleep;
-use hifive1::{Led, pins};
+use hifive1::{Led, pin};
 
 #[entry]
 fn main() -> ! {
@@ -20,15 +20,14 @@ fn main() -> ! {
     let clocks = hifive1::clock::configure(p.PRCI, p.AONCLK, 320.mhz().into());
     
     // get LED pins
-    let rgb_pins = pins!(pins, (led_red, led_green, led_blue));
-    let mut tleds = hifive1::rgb(rgb_pins.0, rgb_pins.1, rgb_pins.2);
+    let mut blue_led = pin!(pins, led_blue).into_inverted_output();
 
     let mut sleep = Sleep::new(dr.core_peripherals.clint.mtimecmp, clocks);
 
     for _ in 0..9 {
-        tleds.2.on();
+        blue_led.on();
         sleep.delay_ms(500u32);
-        tleds.2.off();
+        blue_led.off();
         sleep.delay_ms(500u32);
     }
 
